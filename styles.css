@@ -1,93 +1,66 @@
 /* ============================================================================
-  global resets and base styles
-  ========================================================================== */
+   GLOBAL BASE
+   ========================================================================== */
 
-/* base typography and layout reset */
-/* sets the default font for the body, removes default margin, and applies a subtle background color for the main content area */
 body {
-  font-family: 'Public Sans', sans-serif; /* UI text / labels */
-  margin: 0; /* reset browser defaults */
-  background-color: #fbfaf8; /* subtle background for the inner stack */
+  font-family: 'Public Sans', sans-serif;
+  margin: 0;
+  background-color: #fbfaf8;
 }
 
-/* chart container: relative positioning for absolute children */
-/* allows absolutely positioned children inside .graphic to be placed relative to this container */
-.graphic { position: relative; }
-
-/* sticky chart inner wrapper: flexible column layout */
-/* sets up a flex container for the sticky chart area, allowing vertical stacking of children */
-.sticky-inner {
-  display: flex;
+.graphic {
+  background: #EFEDE9;
+  border-radius: 12px;
+  padding: 24px 40px 40px;
+  height: 720px;
+  position: relative;
+  transition: height 0.3s ease;
 }
 
-/* genre labels: bold text on top of bubbles with white halo for readability */
-/* styles text labels for genre bubbles, including font, color, and a white stroke for contrast */
 .genre-label {
   font-family: 'Public Sans', sans-serif;
   font-size: 12px;
   font-weight: bold;
   text-anchor: middle;
   fill: #1D1C1C;
-
-  stroke: #FFFFFF;           /* halo effect around text */
+  stroke: #FFFFFF;
   stroke-width: 2px;
   stroke-linejoin: round;
-  paint-order: stroke;       /* draw stroke first, then fill */
-  pointer-events: none;      /* don't block mouse events intended for bubbles */
-  transition: opacity 300ms ease; /* smooth transition when dimming */
-}
-
-/* dimming utility: fades elements to background when focusing others */
-/* utility class to visually de-emphasize elements by lowering their opacity */
-.dimmed {
-  opacity: 0.18 !important;  /* force dimming to override any other opacity */
+  paint-order: stroke;
+  pointer-events: none;
   transition: opacity 300ms ease;
 }
 
-/* chart inner container: vertical stack with top alignment */
-/* ensures children are stacked vertically and aligned to the top, with padding for spacing */
-.sticky-inner {
-  display: flex;
-  flex-direction: column;     /* stack children vertically */
-  align-items: flex-start;    /* top align — prevents title/axis movement */
-  padding: 36px 12px 100px;   /* extra bottom padding for fine note space */
+.dimmed {
+  opacity: 0.18 !important;
+  transition: opacity 300ms ease;
 }
 
-/* responsive gutters: narrower on smaller screens */
-/* adjusts horizontal padding for the body on smaller screens for better mobile layout */
 @media (max-width: 900px) { body { padding-inline: 36px; } }
 @media (max-width: 600px) { body { padding-inline: 20px; } }
 
-/* enable native smooth scrolling for anchor links and programmatic scroll jumps */
-/* enables smooth scrolling and disables elastic bounce effect on vertical scroll */
 html { 
   scroll-behavior: smooth;
-  overscroll-behavior-y: none; /* prevent elastic bounce at top/bottom of page */
+  overscroll-behavior-y: none;
 }
 
 
 /* ============================================================================
-  HERO INTRO (full-viewport)
-  ========================================================================== */
+   HERO INTRO
+   ========================================================================== */
 
-/* hero-intro: full viewport intro section, centered content, with background layer */
-/* creates a grid container that fills the viewport, centers its content, and uses a pseudo-element for background */
 .hero-intro {
   position: relative;
   display: grid;
   place-items: center;
-
-  /* make it exactly the viewport height, padding included */
   height: 100svh;
   min-height: 100svh;
   max-height: 100svh;
   padding-block: 48px;
-  box-sizing: border-box; /* prevents padding from adding extra height */
-  isolation: isolate; /* for the ::before background layer */
+  box-sizing: border-box;
+  isolation: isolate;
 }
 
-/* hero-intro::before: background layer for hero section */
-/* adds a background color and subtle shadow behind the hero content */
 .hero-intro::before {
   content: "";
   position: absolute;
@@ -100,15 +73,11 @@ html {
   box-shadow: inset 0 -1px 0 #E6E3DE;
 }
 
-/* hero-inner: fixed width container for hero content */
-/* ensures hero content matches the chart column width for alignment */
 .hero-inner {
-  width: 1000px;   /* <- matches the chart column width exactly */
-  margin: 0; 
+  width: 1000px;
+  margin: 0;
 }
 
-/* hero-title: main heading in hero section */
-/* large, serif-styled title for the hero area */
 .hero-title {
   font-family: 'Libre Baskerville', serif; 
   font-size: 42px;
@@ -118,43 +87,34 @@ html {
   color: #4B2E39; 
 }
 
-/* hero-sub: subtitle text in hero section */
-/* secondary text with max width and increased line height for readability */
 .hero-sub {
   font-family: 'Libre Baskerville', serif;
   font-size: 20px;
   margin: 20px 0 10px;
   color: #444;   
-  max-width: 70 ch; 
-  line-height: 1.6;  
+  max-width: 70ch;
+  line-height: 1.6;
 }
 
-/* down arrow button: positioned within the hero, gently animated. */
-/* styles the down arrow button for navigation, including hover and active states */
 .hero-arrow {
   position: absolute;
-  left: 50%;                               /* center horizontally */
-  bottom: clamp(120px, 18vh, 200px);       /* responsive vertical offset */
-  transform: translateX(-50%);             /* true centering */
-  display: grid; place-items: center;
-
-  width: 46px; height: 46px;               /* compact tap target */
-  border-radius: 999px;                     /* perfect circle */
+  left: 50%;
+  bottom: clamp(120px, 18vh, 200px);
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
   cursor: pointer;
-
   border: 1px solid #E6E3DE; 
   background: #fbfaf8;               
   color: #5C7A77;           
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);    /* soft lift */
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
 }
 
-/* hero-arrow hover and active states */
-/* provides visual feedback on hover and click for the arrow button */
 .hero-arrow:hover  { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-.hero-arrow:active { transform: translateX(-50%) scale(.98); } /* tactile nudge */
-
-/* focus ring for keyboard users */
-/* ensures accessibility by showing an outline when focused via keyboard */
+.hero-arrow:active { transform: translateX(-50%) scale(.98); }
 .hero-arrow:focus-visible {
   outline: 2px solid #C1A76A;
   outline-offset: 2px;
@@ -162,57 +122,39 @@ html {
 
 
 /* ============================================================================
-  TWO-COLUMN SCROLLYTELLING
-  - left: sticky chart container (gray)
-  - right: text cards that trigger scenes on scroll
-  ========================================================================== */
+   TWO-COLUMN SCROLLYTELLING LAYOUT
+   ========================================================================== */
 
-/* grid with 1000px left column (the chart), and a flexible right column */
-/* sets up a two-column grid for the main content: fixed-width chart and flexible text cards */
 .two-col {
   display: grid;
-  grid-template-columns: 1000px 1fr;  /* left = chart (fixed), right = cards (fluid) */
-  column-gap: 28px;                   /* visual separation between chart and copy */
+  grid-template-columns: 1000px 1fr;
+  column-gap: 28px;
   width: 100%;
-  max-width: 1400px;                  /* containing width (works with body gutter) */
-  margin: 24px 0 24px 120px;          /* left margin for viz, vertical margins for spacing */
-  align-items: start;                 /* top-align both columns */
+  max-width: 1400px;
+  margin: auto;
+  align-items: start;
 }
 
-/* sticky gray chart container */
-/* makes the chart area sticky as you scroll, with background and shadow for emphasis */
 .viz-wrap {
   position: sticky;
-  top: 3vh;                               /* reduced gap above for better vertical centering */
+  top: 3vh;
   background-color: #EFEDE9;  
-  border-radius: 4px;                     /* soft corners */
+  border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   width: 1000px;              
-  overflow: visible;                      /* allow tooltips to float outside */
-  margin-bottom: 3vh;                     /* balanced gap below to match top */
+  overflow: visible;
+  margin-bottom: 3vh;
 }
 
-/* inner stack: top-aligned so headings don’t “jump” between scenes
-  min-height near the viewport height so bars + diagonal labels fit. */
-/* ensures chart content is stacked and aligned at the top, with consistent padding */
 .graphic { position: relative; }
-.sticky-inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;    /* top align — prevents title/axis movement */
-  padding: 36px 12px 16px;        /* fixed top/bottom padding for consistent look */
-}
 
-
-/* chart title and subtitles */
-/* styles for the main chart title and supporting subtitles */
 #chart-title {
   font-family: 'Libre Baskerville', serif;
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.5px;
   margin: 0 0 8px;
-  color: #222;               
+  color: #222;
 }
 
 .subtitle {
@@ -227,53 +169,38 @@ html {
   color: #666;
   margin: 0 0 10px;
 }
-.subtitle-little a {
-  color: #666;
-  text-decoration: underline;   
-}
 
-/* fine note (small-print under the viz svg): */
-/* positions a small note under the chart, aligned with chart margins */
 .fine-note {
   position: absolute;
-  left: 80px;           /* align to left chart margin */
-  right: 220px;         /* align to right chart margin */
-  bottom: 30px;         /* positioned within the bottom padding */
-  max-width: none;      /* let left/right insets control width */
-  margin: 0;
+  left: 80px;
+  right: 220px;
+  bottom: 30px;
   font-size: 12px;
   line-height: 1.4;
   color: #777;
   transition: opacity .25s ease;
 }
 
-/* Make sure there’s room under the SVG so the note isn’t clipped */
-/* adds extra bottom padding and ensures overflow is visible for the fine note */
-.graphic .sticky-inner {
-  padding-bottom: 24px;   /* a bit more space than before */
-  overflow: visible;      /* ensure the note can show even if tall */
+.sticky-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 12px 100px;
+  overflow: visible;
 }
 
-/* hides the fine note when needed via JS */
-.fine-note.note-hidden {
-  display: none;
-}
+.fine-note.note-hidden { display: none; }
+
 
 /* ============================================================================
-  TEXT CARDS (STEPS)
-  - each card triggers a scene (“baseline”, “noop”, “horror”, “bars”)
-  - large vertical margins so you see one card at a time while scrolling
-  ========================================================================== */
+   STEP CARDS
+   ========================================================================== */
 
-/* steps: container for all step cards */
-/* limits width and adds bottom padding for the text card column */
 .steps {
-  max-width: 360px;      
+  max-width: 360px;
   padding: 8px 0 80px;   
 }
 
-/* step: individual text card */
-/* styles each card with background, border, shadow, and large vertical margins for scrollytelling */
 .step {
   background: #FAF8F4;             
   border: 1px solid #ECE9E3; 
@@ -281,20 +208,12 @@ html {
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   padding: 14px 16px;
   color: #4A4947;         
-  margin: 120vh 0;                     /* big vertical spacing => one card at a time */
+  margin: 120vh 0;
 }
 
-/* when a step has an attached poster section, reduce bottom margin */
-/* tightens spacing between a step and its associated movie posters */
-.step.with-posters {
-  margin-bottom: 10px;                 /* tight coupling with posters below */
-}
-
-/* removes default margin from paragraphs inside steps */
+.step.with-posters { margin-bottom: 10px; }
 .step p { margin: 0; }
 
-/* visual hint for the active card selected by JS */
-/* highlights the currently active step card */
 .step.is-active {
   border-color: #E1DDD6;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -302,16 +221,13 @@ html {
 
 
 /* ============================================================================
-  TOOLTIP
-  - fixed positioning; follows the mouse pointer with JS updates.
-  ========================================================================== */
+   TOOLTIP
+   ========================================================================== */
 
-/* tooltip: floating info box for chart elements */
-/* fixed position, hidden by default, styled for readability and subtlety */
 .tooltip {
-  position: fixed;             /* avoids shifting when the page scrolls */
-  pointer-events: none;        /* so you can’t accidentally hover the tooltip */
-  opacity: 0;                  /* JS toggles to 1 on hover */
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
   background: #fff;
   color: #333;
   padding: 10px 12px;
@@ -321,15 +237,14 @@ html {
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: opacity 0.2s ease-in-out;
   max-width: 240px;
+  z-index: 10000;
 }
 
 
 /* ============================================================================
-  SVG STYLING (marks, axes, guides)
-  ========================================================================== */
+   SVG STYLING
+   ========================================================================== */
 
-/* bubbles (scatter) */
-/* styles for genre bubbles in scatterplots, including opacity and stroke */
 .genre-bubble {
   opacity: 0.8;
   stroke: #F8F7F5; 
@@ -337,29 +252,14 @@ html {
   transition: opacity 0.2s ease;
 }
 .genre-bubble:hover { opacity: 1; }
-.genre-bubble.dimmed {
-  opacity: 0.18 !important;
-}
+.genre-bubble.dimmed { opacity: 0.18 !important; }
 
-/* palette classes used by D3 via class="color-cat-N" */
-/* color palette for different genre categories, used by D3 for bubble fills */
-.color-cat-1 { fill: #4B2E39; }  /* plum (deep) */
-.color-cat-2 { fill: #7A4E35; }  /* umber */
-.color-cat-3 { fill: #7D825C; }  /* olive-gray */
-.color-cat-4 { fill: #5C7A77; }  /* teal-gray */
-.color-cat-5 { fill: #C1A76A; }  /* ochre */
-.color-cat-6 { fill: #474343; }  /* charcoal */
-
-/* quadrant guides (scatter) */
-/* dashed lines for quadrant guides in scatterplots */
 .quadrant-line {
   stroke: #b2b1b1ff;
   stroke-width: 1px;
   stroke-dasharray: 3;
 }
 
-/* quadrant labels */
-/* styles for quadrant label text in scatterplots */
 .quadrant-label {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
@@ -367,28 +267,19 @@ html {
   fill: #555;
 }
 
-/* mean value labels (little numeric tags) */
-/* small numeric labels for axis means in scatterplots */
 .quadrant-axis-label {
   font-size: 10px;
   fill: #888;
   text-anchor: middle;
 }
-.quadrant-axis-label.horizontal {
-  dominant-baseline: middle; /* better baseline alignment across browsers */
-}
 
-/* axes + ticks + tick labels */
-/* styles for axis lines, grid ticks, and tick labels */
-.x-axis path, .y-axis path   { stroke: #DDDDDD; } /* axis line */
-.x-axis .tick line, .y-axis .tick line { stroke: #E0E0E0; } /* grid-ish ticks */
+.x-axis path, .y-axis path { stroke: #DDDDDD; }
+.x-axis .tick line, .y-axis .tick line { stroke: #E0E0E0; }
 .x-axis .tick text, .y-axis .tick text {
   fill: #666;
   font-size: 13px;
 }
 
-/* axis labels */
-/* styles for axis label text */
 .x-label, .y-label {
   font-family: 'Public Sans', sans-serif;
   font-weight: 500;
@@ -396,36 +287,8 @@ html {
   font-size: 15px;
 }
 
-/* data labels drawn on top of bubbles */
-/* repeated genre-label styles for SVG text on bubbles */
-.genre-label {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  text-anchor: middle;
-  fill: #1D1C1C;
-
-  stroke: #FFFFFF;           /* halo */
-  stroke-width: 2px;
-  stroke-linejoin: round;
-  paint-order: stroke;  
-  pointer-events: none;      /* don’t block mouse events intended for bubbles */
-}
-
-/* visual dimming class used when focusing horror in the scatter view */
-/* utility class for dimming elements in the scatterplot */
-.dimmed {
-  opacity: 0.18;
-  transition: opacity 300ms ease;
-}
-
-/* utility: hide element but keep layout if needed (JS uses .hidden on note) */
-/* hides elements from display, used for toggling visibility */
 .hidden { display: none; }
 
-
-/* legend text styles */
-/* styles for legend titles and items in SVG legends */
 .legend-title {
   font-family: 'Public Sans', sans-serif;
   font-weight: 500;
@@ -443,53 +306,37 @@ html {
 
 
 /* ============================================================================
-  RESPONSIVE
-  collapse to a single column on narrow screens and widen the right-rail
-  ========================================================================== */
+   RESPONSIVE
+   ========================================================================== */
 
-/* responsive layout for screens <= 1200px */
-/* stacks columns vertically, makes steps wider, and adjusts margins/font sizes */
 @media (max-width: 1200px) {
-  .two-col {                     /* stack columns */
-   grid-template-columns: 1fr;
-   width: 100%;
+  .two-col { grid-template-columns: 1fr; }
+  .viz-wrap { width: 100%; }
+  .steps {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 10px 80px;
   }
-
-  .viz-wrap { width: 100%; }     /* let chart block fill width */
-
-  .steps {                       /* make cards wider when below the chart */
-   max-width: 720px;
-   margin: 0 auto;
-   padding: 20px 10px 80px;
-  }
-
-  .step { margin: 80vh 0; }      /* still one-at-a-time on small screens */
-
-  #chart-title { font-size: 28px; }  /* slight scale down for smaller viewports */
+  .step { margin: 80vh 0; }
+  #chart-title { font-size: 28px; }
 }
 
 
 /* ============================================================================
-  MOVIE POSTERS (immediately below cards, not inside them)
-  ========================================================================== */
+   MOVIE POSTERS
+   ========================================================================== */
 
-/* movie-posters-section: container for movie posters below cards */
-/* adds vertical spacing and transparent background for poster sections */
 .movie-posters-section {
-  margin: 50px 0 24px 0;  /* minimal top margin to stay close to card */
+  margin: 50px 0 24px 0;
   padding: 0;
   background: transparent;
 }
 
-/* when posters follow a consolidated step, reduce bottom margin (keywords will follow) */
-/* adjusts spacing when posters are paired with a step card */
 .movie-posters-section.with-step {
-  margin-top: 50px;       /* 50px spacing after the card */
-  margin-bottom: 50px;    /* 50px gap before keywords section */
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-/* posters-title: heading for poster sections */
-/* styles the title above a group of posters */
 .posters-title {
   font-family: 'Libre Baskerville', serif;
   font-size: 16px;
@@ -498,8 +345,6 @@ html {
   margin: 0 0 10px 0;
 }
 
-/* posters-grid: flex container for poster items */
-/* arranges poster items in a row with gaps */
 .posters-grid {
   display: flex;
   gap: 12px;
@@ -507,8 +352,6 @@ html {
   align-items: flex-start;
 }
 
-/* movie-poster-item: individual poster and info */
-/* sets width and vertical layout for each poster item */
 .movie-poster-item {
   flex: 0 0 auto;
   width: calc(33.333% - 8px);
@@ -517,8 +360,6 @@ html {
   align-items: center;
 }
 
-/* poster-img: actual movie poster image */
-/* ensures correct aspect ratio, fit, and adds a subtle shadow and hover effect */
 .poster-img {
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -528,13 +369,8 @@ html {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   transition: transform 0.2s ease;
 }
+.poster-img:hover { transform: scale(1.02); }
 
-.poster-img:hover {
-  transform: scale(1.02);
-}
-
-/* movie-poster-info: text info below each poster */
-/* centers and styles the text below each poster */
 .movie-poster-info {
   margin-top: 8px;
   text-align: center;
@@ -543,16 +379,12 @@ html {
   width: 100%;
 }
 
-/* movie-title: title of the movie under poster */
-/* bold and colored for emphasis */
 .movie-title {
   font-weight: 600;
   color: #333;
   margin-bottom: 6px;
 }
 
-/* poster-category-label: label for poster category */
-/* uppercase, small, and muted for category tags */
 .poster-category-label {
   font-family: 'Public Sans', sans-serif;
   font-size: 11px;
@@ -565,60 +397,50 @@ html {
   line-height: 1.3;
 }
 
-/* movie-genre: genre label under poster */
-/* italic and muted for genre info */
 .movie-genre {
   color: #666;
   font-style: italic;
   margin-bottom: 3px;
 }
 
-/* movie-views: view count under poster */
-/* small and muted for view statistics */
 .movie-views {
   color: #888;
   font-size: 10px;
   margin-bottom: 2px;
 }
 
-/* movie-rating: rating under poster */
-/* small, bold, and muted for rating info */
 .movie-rating {
   color: #999;
   font-size: 10px;
   font-weight: 500;
 }
 
-/* responsive: stack vertically on narrow screens */
-/* switches poster grid to a column layout and centers items on small screens */
 @media (max-width: 600px) {
   .posters-grid {
-   flex-direction: column;
-   gap: 16px;
+    flex-direction: column;
+    gap: 16px;
   }
-  
   .movie-poster-item {
-   width: 100%;
-   max-width: 200px;
-   margin: 0 auto;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
   }
 }
 
-/* Horror statistics section (50px below cult corner card) */
-/* adds vertical spacing for the horror stats section */
+
+/* ============================================================================
+   HORROR STATS
+   ========================================================================== */
+
 .horror-stats-section {
   margin-top: 50px;
   margin-bottom: 30px;
 }
 
-/* horror-posters-first: extra top margin for first horror posters group */
-/* creates large vertical gap for scrollytelling effect */
 .horror-posters-first {
   margin-top: 120vh;
 }
 
-/* horror-genre-title: heading for horror genre section */
-/* large, bold, colored heading for horror genre */
 .horror-genre-title {
   font-family: 'Libre Baskerville', serif;
   font-size: 20px;
@@ -627,14 +449,10 @@ html {
   margin: 0 0 16px 0;
 }
 
-/* Horror statistics (rating/views averages) */
-/* spacing for individual horror statistics */
 .horror-stat {
   margin: 16px 0 12px 0;
 }
 
-/* stat-label: label for a statistic */
-/* small, uppercase, muted label for stats */
 .stat-label {
   font-family: 'Public Sans', sans-serif;
   font-size: 11px;
@@ -645,8 +463,6 @@ html {
   margin: 0 0 4px 0;
 }
 
-/* stat-value: value for a statistic */
-/* large, bold, colored value for stats */
 .stat-value {
   font-family: 'Libre Baskerville', serif;
   font-size: 20px;
@@ -655,8 +471,6 @@ html {
   margin: 0 0 8px 0;
 }
 
-/* posters-subtitle: subtitle for poster groups */
-/* small, uppercase, muted subtitle for poster sections */
 .posters-subtitle {
   font-family: 'Public Sans', sans-serif;
   font-size: 11px;
@@ -667,40 +481,31 @@ html {
   margin: 16px 0 10px 0;
 }
 
-/* ============================================================================
-  KEYWORDS SECTION (below bars card)
-  ========================================================================== */
 
-/* keywords-section: container for keywords below poster groups */
-/* adds bottom margin and transparent background for keywords section */
+/* ============================================================================
+   KEYWORDS
+   ========================================================================== */
+
 .keywords-section {
-  margin: 0 0 24px 0;  /* no top margin since posters already provide 50px gap */
+  margin: 0 0 24px 0;
   padding: 0;
   background: transparent;
 }
 
-/* when keywords follow a consolidated step, they maintain the 120vh bottom margin */
-/* restores large vertical gap after keywords for scrollytelling */
 .keywords-section.with-step {
-  margin-bottom: 120vh;  /* restore scrollytelling spacing after the keywords group */
+  margin-bottom: 120vh;
 }
 
-/* Overall keywords section with 50px top spacing */
-/* adds top margin for overall keywords section */
 .keywords-section-overall {
   margin: 50px 0 24px 0;
   padding: 0;
   background: transparent;
 }
 
-/* when overall keywords follow a consolidated step, they maintain the 120vh bottom margin */
-/* restores large vertical gap after overall keywords for scrollytelling */
 .keywords-section-overall.with-step {
-  margin-bottom: 120vh;  /* restore scrollytelling spacing after the keywords group */
+  margin-bottom: 120vh;
 }
 
-/* keywords-category-title: heading for keyword categories */
-/* bold, colored heading for each keyword group */
 .keywords-category-title {
   font-family: 'Libre Baskerville', serif;
   font-size: 16px;
@@ -708,14 +513,10 @@ html {
   color: #4B2E39;
   margin: 24px 0 8px 0;
 }
-
-/* removes top margin for the first keyword category title */
 .keywords-category-title:first-child {
   margin-top: 0;
 }
 
-/* Supergroup title - appears right before step cards */
-/* bold, colored heading for supergroup sections */
 .supergroup-title {
   font-family: 'Libre Baskerville', serif;
   font-size: 16px;
@@ -724,25 +525,18 @@ html {
   margin: 0 0 8px 0;
 }
 
-/* Keywords navigation header */
-/* flex container for navigation controls above keyword grids */
 .keywords-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0;
 }
 
-/* keywords-nav: container for navigation buttons and indicators */
-/* arranges navigation buttons and dots in a row */
 .keywords-nav {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* keywords-nav-btn: navigation button for switching keyword grids */
-/* large, icon-style button with hover effect */
 .keywords-nav-btn {
   background: none;
   border: none;
@@ -753,21 +547,16 @@ html {
   line-height: 1;
   transition: color 0.2s ease;
 }
-
 .keywords-nav-btn:hover {
   color: #4B2E39;
 }
 
-/* keywords-nav-indicator: container for navigation dots */
-/* arranges dots in a row for indicating active grid */
 .keywords-nav-indicator {
   display: flex;
   gap: 6px;
   align-items: center;
 }
 
-/* keywords-nav-dot: individual navigation dot */
-/* small circle, changes color when active */
 .keywords-nav-dot {
   width: 6px;
   height: 6px;
@@ -775,33 +564,25 @@ html {
   background: #D0CCC7;
   transition: background 0.3s ease;
 }
-
 .keywords-nav-dot.active {
   background: #4B2E39;
 }
 
-/* Keywords grid container for switching */
-/* relative container for keyword grids, ensures minimum height */
 .keywords-grid-container {
   position: relative;
   min-height: 100px;
 }
 
-/* Default: keywords grids inside containers are hidden */
-/* hides all keyword grids by default, only shows the active one */
 .keywords-grid-container .keywords-grid {
   display: none;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
 }
-
 .keywords-grid-container .keywords-grid.active {
   display: flex;
 }
 
-/* Overall keywords section (no container, always visible) */
-/* always shows keyword grids in the overall section */
 .keywords-section-overall .keywords-grid {
   display: flex;
   flex-wrap: wrap;
@@ -809,8 +590,6 @@ html {
   margin-bottom: 20px;
 }
 
-/* keywords-intro: intro text above keyword tags */
-/* small, uppercase, muted intro with optional info icon */
 .keywords-intro {
   font-family: 'Public Sans', sans-serif;
   font-size: 11px;
@@ -822,8 +601,6 @@ html {
   position: relative;
 }
 
-/* info icon next to keywords intro */
-/* small icon with tooltip on hover, for extra info */
 .info-icon {
   display: inline-block;
   font-size: 10px;
@@ -835,8 +612,6 @@ html {
   line-height: 1;
 }
 
-/* tooltip for info icon */
-/* shows tooltip text above the icon on hover */
 .info-icon::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -848,23 +623,17 @@ html {
   padding: 6px 10px;
   border-radius: 4px;
   font-size: 11px;
-  font-weight: 400;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
   margin-bottom: 6px;
   font-family: 'Public Sans', sans-serif;
-  text-transform: none;
-  letter-spacing: 0;
 }
-
 .info-icon:hover::after {
   opacity: 1;
 }
 
-/* keyword-tag: individual keyword pill */
-/* pill-shaped tag for each keyword, with background and border */
 .keyword-tag {
   display: inline-flex;
   align-items: center;
@@ -879,15 +648,11 @@ html {
   transition: all 0.2s ease;
 }
 
-/* keyword-name: name part of the keyword tag */
-/* bolds the keyword name for emphasis */
 .keyword-name {
   font-weight: 500;
   font-size: 14px;
 }
 
-/* keyword-count: count part of the keyword tag */
-/* small, bold, muted pill for keyword frequency */
 .keyword-count {
   font-size: 14px;
   color: #888;
@@ -897,8 +662,6 @@ html {
   font-weight: 600;
 }
 
-/* keyword-loading: loading state for keywords */
-/* italic, muted text for loading indicator */
 .keyword-loading {
   font-family: 'Public Sans', sans-serif;
   font-size: 12px;
@@ -906,12 +669,11 @@ html {
   font-style: italic;
 }
 
-/* ============================================================================
-  METHODOLOGY BUTTON & MODAL
-  ========================================================================== */
 
-/* methodology-btn: button to open methodology modal */
-/* absolutely positioned button, hidden by default, styled for emphasis */
+/* ============================================================================
+   METHODOLOGY MODAL
+   ========================================================================== */
+
 .methodology-btn {
   position: absolute;
   top: 12px;
@@ -929,19 +691,14 @@ html {
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 5;
-  display: none;  /* hidden initially, shown when bars appear */
+  display: none;
 }
-
-/* methodology-btn hover state */
-/* changes color and border on hover for feedback */
 .methodology-btn:hover {
   color: #4B2E39;
   border-color: #4B2E39;
   background: rgba(250, 248, 244, 0.8);
 }
 
-/* methodology-modal: modal overlay for methodology info */
-/* hidden by default, covers the viewport when open */
 .methodology-modal {
   display: none;
   position: fixed;
@@ -952,13 +709,10 @@ html {
   padding: 20px;
 }
 
-/* methodology-modal.is-open: shows the modal when active */
 .methodology-modal.is-open {
   display: flex;
 }
 
-/* methodology-modal-backdrop: darkened background for modal */
-/* semi-transparent black background with blur effect */
 .methodology-modal-backdrop {
   position: absolute;
   inset: 0;
@@ -966,8 +720,6 @@ html {
   backdrop-filter: blur(3px);
 }
 
-/* methodology-modal-box: modal content container */
-/* centers and styles the modal content, with scroll for overflow */
 .methodology-modal-box {
   position: relative;
   max-width: 580px;
@@ -981,8 +733,6 @@ html {
   z-index: 1;
 }
 
-/* methodology-modal-box h3: modal heading */
-/* large, bold, colored heading for modal */
 .methodology-modal-box h3 {
   font-family: 'Libre Baskerville', serif;
   font-size: 22px;
@@ -991,8 +741,6 @@ html {
   margin: 0 0 18px 0;
 }
 
-/* methodology-modal-box p: modal paragraphs */
-/* normal font, readable line height for modal text */
 .methodology-modal-box p {
   font-family: 'Public Sans', sans-serif;
   font-size: 15px;
@@ -1000,14 +748,10 @@ html {
   color: #444;
   margin: 0 0 14px 0;
 }
-
-/* removes bottom margin from last paragraph in modal */
 .methodology-modal-box p:last-of-type {
   margin-bottom: 0;
 }
 
-/* methodology-modal-close: close button for modal */
-/* absolute, icon-style button in top-right of modal */
 .methodology-modal-close {
   position: absolute;
   top: 12px;
@@ -1026,17 +770,79 @@ html {
   border-radius: 3px;
   transition: all 0.2s ease;
 }
-
-/* methodology-modal-close hover state */
-/* subtle background and color change on hover */
 .methodology-modal-close:hover {
   background: #F5F4F2;
   color: #333;
 }
 
-/* chart-note: small italic note for charts */
-/* styles for chart notes, typically used for disclaimers or extra info */
-.chart-note{
-  font-size: 13px;
-  font-style: italic;
+.chart-note { font-size: 13px; font-style: italic; }
+
+
+/* ============================================================================
+   POSTER WALL OVERLAY
+   ========================================================================== */
+
+.poster-wall {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  pointer-events: auto;
+}
+
+.poster-wall-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+
+.poster-wall img.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 2 / 3;
+  border-radius: 2px;
+}
+
+
+/* ============================================================================
+   MAP OVERLAY
+   ========================================================================== */
+
+.map-wrapper {
+  position: absolute;
+  display: none;
+  opacity: 0;
+  pointer-events: auto;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.graphic.map-mode .sticky-inner {
+  padding-bottom: 80px;
+}
+
+.map-wrapper svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map-wrapper .country {
+  stroke: #fff;
+  stroke-width: 0.5px;
+  cursor: pointer;
+}
+
+.steps::after {
+  content: "";
+  display: block;
+  height: 40vh;
 }

@@ -1,0 +1,188 @@
+Country,Fear_Category,Movie_Count
+Argentina,Captivity & Voyeuristic Sadism,1
+Argentina,Persecution & Social Breakdown,1
+Australia,Body Horror,1
+Australia,Captivity & Voyeuristic Sadism,4
+Australia,Contagion & Mutation,1
+Australia,Ecological / Natural Menace,4
+Australia,Grief & Familial Trauma,4
+Australia,Institutional & Structural Control,1
+Australia,Isolation & Psychological Unraveling,2
+Australia,Possession & Loss of Agency,5
+Belgium,Body Horror,1
+Belgium,Captivity & Voyeuristic Sadism,1
+Brazil,Ecological / Natural Menace,1
+Bulgaria,Captivity & Voyeuristic Sadism,2
+Bulgaria,Grief & Familial Trauma,2
+Bulgaria,Institutional & Structural Control,1
+Canada,Body Horror,2
+Canada,Captivity & Voyeuristic Sadism,18
+Canada,Contagion & Mutation,4
+Canada,Ecological / Natural Menace,3
+Canada,Grief & Familial Trauma,9
+Canada,Institutional & Structural Control,6
+Canada,Isolation & Psychological Unraveling,2
+Canada,Possession & Loss of Agency,14
+Canada,Transgression & Moral Punishment,2
+China,Body Horror,1
+China,Captivity & Voyeuristic Sadism,1
+China,Ecological / Natural Menace,3
+China,Institutional & Structural Control,1
+China,Persecution & Social Breakdown,1
+Croatia,Captivity & Voyeuristic Sadism,1
+Croatia,Institutional & Structural Control,1
+Czech Republic,Captivity & Voyeuristic Sadism,2
+Denmark,Possession & Loss of Agency,1
+Dominican Republic,Ecological / Natural Menace,1
+Finland,Body Horror,1
+France,Body Horror,1
+France,Captivity & Voyeuristic Sadism,8
+France,Contagion & Mutation,3
+France,Ecological / Natural Menace,3
+France,Grief & Familial Trauma,1
+France,Persecution & Social Breakdown,3
+France,Possession & Loss of Agency,5
+Germany,Body Horror,2
+Germany,Contagion & Mutation,5
+Germany,Ecological / Natural Menace,3
+Germany,Grief & Familial Trauma,4
+Germany,Institutional & Structural Control,1
+Germany,Persecution & Social Breakdown,1
+Germany,Possession & Loss of Agency,2
+Hong Kong,Ecological / Natural Menace,1
+Hong Kong,Grief & Familial Trauma,1
+Hong Kong,Possession & Loss of Agency,1
+Hungary,Captivity & Voyeuristic Sadism,3
+Hungary,Transgression & Moral Punishment,1
+India,Captivity & Voyeuristic Sadism,1
+India,Ecological / Natural Menace,1
+India,Grief & Familial Trauma,4
+India,Possession & Loss of Agency,3
+India,Transgression & Moral Punishment,1
+Indonesia,Body Horror,2
+Indonesia,Captivity & Voyeuristic Sadism,2
+Indonesia,Grief & Familial Trauma,20
+Indonesia,Institutional & Structural Control,2
+Indonesia,Isolation & Psychological Unraveling,1
+Indonesia,Persecution & Social Breakdown,2
+Indonesia,Possession & Loss of Agency,32
+Indonesia,Transgression & Moral Punishment,1
+Iran,Possession & Loss of Agency,1
+Ireland,Body Horror,1
+Ireland,Grief & Familial Trauma,1
+Ireland,Possession & Loss of Agency,1
+Italy,Body Horror,1
+Italy,Grief & Familial Trauma,1
+Italy,Possession & Loss of Agency,1
+Italy,Transgression & Moral Punishment,1
+Japan,Captivity & Voyeuristic Sadism,3
+Japan,Contagion & Mutation,2
+Japan,Ecological / Natural Menace,1
+Japan,Grief & Familial Trauma,2
+Japan,Institutional & Structural Control,2
+Japan,Persecution & Social Breakdown,2
+Japan,Possession & Loss of Agency,2
+Jordan,Possession & Loss of Agency,1
+Kuwait,Grief & Familial Trauma,1
+Malaysia,Body Horror,1
+Malaysia,Grief & Familial Trauma,1
+Malaysia,Institutional & Structural Control,1
+Malaysia,Possession & Loss of Agency,7
+Malaysia,Transgression & Moral Punishment,5
+Malta,Ecological / Natural Menace,1
+Mexico,Body Horror,1
+Mexico,Captivity & Voyeuristic Sadism,1
+Mexico,Contagion & Mutation,1
+Mexico,Grief & Familial Trauma,1
+Mexico,Possession & Loss of Agency,2
+Netherlands,Persecution & Social Breakdown,1
+New Zealand,Captivity & Voyeuristic Sadism,2
+New Zealand,Grief & Familial Trauma,1
+New Zealand,Institutional & Structural Control,1
+New Zealand,Possession & Loss of Agency,2
+Norway,Body Horror,2
+Norway,Captivity & Voyeuristic Sadism,3
+Norway,Possession & Loss of Agency,1
+Pakistan,Possession & Loss of Agency,1
+Philippines,Body Horror,1
+Philippines,Captivity & Voyeuristic Sadism,1
+Philippines,Grief & Familial Trauma,2
+Philippines,Institutional & Structural Control,2
+Philippines,Persecution & Social Breakdown,1
+Philippines,Possession & Loss of Agency,3
+Philippines,Transgression & Moral Punishment,2
+Poland,Body Horror,1
+Poland,Captivity & Voyeuristic Sadism,1
+Poland,Institutional & Structural Control,1
+Qatar,Possession & Loss of Agency,1
+Romania,Body Horror,1
+Romania,Captivity & Voyeuristic Sadism,1
+Romania,Grief & Familial Trauma,1
+Russia,Isolation & Psychological Unraveling,2
+Serbia,Possession & Loss of Agency,1
+Singapore,Ecological / Natural Menace,1
+Singapore,Institutional & Structural Control,1
+Singapore,Possession & Loss of Agency,1
+South Africa,Captivity & Voyeuristic Sadism,4
+South Korea,Captivity & Voyeuristic Sadism,1
+South Korea,Ecological / Natural Menace,1
+South Korea,Grief & Familial Trauma,5
+South Korea,Institutional & Structural Control,1
+South Korea,Isolation & Psychological Unraveling,1
+South Korea,Persecution & Social Breakdown,2
+South Korea,Possession & Loss of Agency,5
+Spain,Captivity & Voyeuristic Sadism,2
+Spain,Contagion & Mutation,3
+Spain,Ecological / Natural Menace,1
+Spain,Grief & Familial Trauma,7
+Spain,Institutional & Structural Control,3
+Spain,Persecution & Social Breakdown,2
+Spain,Possession & Loss of Agency,3
+Sweden,Body Horror,1
+Sweden,Captivity & Voyeuristic Sadism,1
+Sweden,Isolation & Psychological Unraveling,1
+Sweden,Persecution & Social Breakdown,1
+Sweden,Possession & Loss of Agency,2
+Taiwan,Grief & Familial Trauma,3
+Taiwan,Possession & Loss of Agency,2
+Thailand,Body Horror,1
+Thailand,Captivity & Voyeuristic Sadism,1
+Thailand,Ecological / Natural Menace,1
+Thailand,Grief & Familial Trauma,2
+Thailand,Institutional & Structural Control,2
+Thailand,Isolation & Psychological Unraveling,1
+Thailand,Persecution & Social Breakdown,2
+Thailand,Possession & Loss of Agency,9
+Turkey,Institutional & Structural Control,1
+USA,Captivity & Voyeuristic Sadism,1
+USA,Contagion & Mutation,1
+USA,Possession & Loss of Agency,1
+United Arab Emirates,Contagion & Mutation,1
+United Arab Emirates,Institutional & Structural Control,1
+United Arab Emirates,Possession & Loss of Agency,1
+United Kingdom,Body Horror,4
+United Kingdom,Captivity & Voyeuristic Sadism,4
+United Kingdom,Contagion & Mutation,9
+United Kingdom,Ecological / Natural Menace,6
+United Kingdom,Grief & Familial Trauma,2
+United Kingdom,Institutional & Structural Control,6
+United Kingdom,Isolation & Psychological Unraveling,2
+United Kingdom,Persecution & Social Breakdown,1
+United Kingdom,Possession & Loss of Agency,16
+United Kingdom,Transgression & Moral Punishment,1
+United States,Body Horror,13
+United States,Captivity & Voyeuristic Sadism,62
+United States,Contagion & Mutation,13
+United States,Ecological / Natural Menace,17
+United States,Grief & Familial Trauma,25
+United States,Institutional & Structural Control,33
+United States,Isolation & Psychological Unraveling,10
+United States,Persecution & Social Breakdown,11
+United States,Possession & Loss of Agency,65
+United States,Transgression & Moral Punishment,6
+Uruguay,Persecution & Social Breakdown,1
+Vietnam,Ecological / Natural Menace,1
+Vietnam,Grief & Familial Trauma,1
+West Germany,Transgression & Moral Punishment,1
+nan,Captivity & Voyeuristic Sadism,1
+nan,Grief & Familial Trauma,2
