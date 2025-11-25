@@ -269,7 +269,7 @@ const palette = [
     .style("font-family", "'IBM Plex Mono', monospace")
     .style("font-size", "12px")
     .style("z-index", "1000")
-    .style("display", "flex")
+    .style("display", "none") // hidden by default
     .style("flex-direction", "column")
     .style("gap", "8px");
 
@@ -411,4 +411,66 @@ const palette = [
     resizeSVG();
     updateChoropleth();
   });
+
+  // ------------------------------------------------------
+  // 8) PUBLIC API FOR SCROLL STEPS
+  // ------------------------------------------------------
+
+  function zoomToWorldInstant() {
+    map.jumpTo({
+      center: [0, 90],
+      zoom: 0.7
+    });
+  }
+
+  function zoomToWorld() {
+      map.easeTo({
+        center: [0, 90],
+        zoom: 0.6,
+        duration: 800
+      });
+    }
+
+  function zoomToAtlanticUS_UK() {
+    map.easeTo({
+      center: [-40, 45],   
+      zoom: 1.55,        
+      duration: 1000
+    });
+  }
+
+  function zoomToIndonesia() {
+    map.easeTo({
+      center: [120, -2], 
+      zoom: 3.0,
+      duration: 1000
+    });
+  }
+
+  function setFilterVisible(show) {
+    controls.style("display", show ? "flex" : "none");
+  }
+
+  function setFearFilter(fearLabelOrNull) {
+    if (!fearLabelOrNull) {
+      currentMode = "total";
+      currentFear = null;
+      select.property("value", "__total__");
+    } else {
+      currentMode = "fear";
+      currentFear = fearLabelOrNull;
+      select.property("value", fearLabelOrNull);
+    }
+    updateChoropleth();
+  }
+
+  window.horrorMapAPI = {
+    zoomToWorldInstant,
+    zoomToWorld,
+    zoomToAtlanticUS_UK,
+    zoomToIndonesia,
+    setFilterVisible,
+    setFearFilter
+  };
 });
+

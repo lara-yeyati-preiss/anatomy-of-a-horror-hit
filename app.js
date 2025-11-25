@@ -1007,9 +1007,45 @@ async function main() {
     if (s) subtitleEl.text(s);
   }
 
-  function applyStepFX(stepEl) {
-    // reserved for step-specific effects (data-fx)
+function applyStepFX(stepEl) {
+  const scene = stepEl?.getAttribute("data-scene");
+  
+  // special behavior for the 4 map cards
+  if (scene === "map" && window.horrorMapAPI) {
+    const api = window.horrorMapAPI;
+
+    const mapSteps = Array.from(
+      document.querySelectorAll('.step[data-scene="map"]')
+    );
+    const idx = mapSteps.indexOf(stepEl);
+
+    // if not found, bail
+    if (idx === -1) return;
+
+    if (idx === 0) {
+      // "But horror isn’t the same everywhere..."
+      api.zoomToWorld();
+      api.setFilterVisible(false);
+      api.setFearFilter(null); // all fears
+    } else if (idx === 1) {
+      // "Global patterns emerge. The United States stands alone..."
+      api.zoomToAtlanticUS_UK();
+      api.setFilterVisible(false);
+      api.setFearFilter(null);
+    } else if (idx === 2) {
+      // "Indonesia ranks third overall — a surprising outlier..."
+      api.zoomToIndonesia();
+      api.setFilterVisible(false);
+      api.setFearFilter(null);
+    } else if (idx === 3) {
+      // "Ultimately, fear is universal..."
+      api.zoomToWorld();
+      api.setFilterVisible(true);
+      api.setFearFilter("Institutional & Structural Control");
+    }
   }
+}
+
 
   // ===============================
   // Methodology button visibility
