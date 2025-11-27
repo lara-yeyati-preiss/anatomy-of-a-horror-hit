@@ -16,28 +16,38 @@
 </head>
 <body>
 
-  <section class="hero-intro">
-    <div class="hero-inner" aria-labelledby="hero-title">
-      <h1 id="hero-title" class="hero-title">Anatomy of a Horror Hit</h1>
-      <p class="hero-sub">
-        Horror films are a cultural barometer—capturing, distorting, and projecting our fears back to us. 
-        Using Netflix’s Engagement Report (Jan–Jun 2025), this project examines what the most-watched horror movies reveal about contemporary anxieties.
-      </p>
+<section class="hero-intro" id="top">
+  <div class="hero-intro-inner">
+
+    <div class="hero-subtle-wrap">
+      <p class="hero-subtle-line">A data story about fear</p>
     </div>
 
-    <button id="to-graph" class="hero-arrow" aria-label="Scroll to chart">
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-           stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-  </section>
+    <h1 class="hero-title">Anatomy of a Horror Hit</h1>
+
+    <p class="hero-lead">
+      Horror films are a cultural barometer—capturing, distorting, and projecting our fears
+      back to us. Using Netflix’s Engagement Report (Jan–Jun 2025), this project examines
+      what the most-watched horror movies reveal about contemporary anxieties.
+    </p>
+
+    <button class="hero-scroll" id="scrollToChart" aria-label="Scroll to chart"></button>
+
+  </div>
+</section>
+
 
   <!-- Two-column layout: left viz, right narrative -->
   <div class="two-col">
     <!-- Sticky chart column -->
     <div class="viz-wrap" id="graph">
       <figure class="graphic">
+        <div class="fine-note note-hidden"
+         data-tooltip-content="Note: A single movie can belong to multiple genres. As a result, the total number of movies represented in the chart is greater than the unique number of titles in the dataset.">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+    </div>
         <div class="sticky-inner">
           <!-- Methodology modal trigger -->
           <button id="methodology-btn" class="methodology-btn">Methodology</button>
@@ -70,12 +80,6 @@
 
           <!-- Shared tooltip -->
           <div class="tooltip" aria-hidden="true"></div>
-
-          <!-- Fine note (scatter only) -->
-          <p class="fine-note note-hidden">
-            Note: A single movie can belong to multiple genres. As a result, the total number of movies represented
-            in the chart is greater than the unique number of titles in the dataset.
-          </p>
         </div>
       </figure>
     </div>
@@ -425,7 +429,7 @@
       <div class="step with-posters" data-scene="map" data-title="Horror Mapping" data-subtitle="Horror titles from Netflix’s Most-Watched Movies (Jan–Jun 2025), divided by production country.">
         <p>
           Global patterns emerge. The <strong>United States</strong> stands alone with more than 200 titles. 
-          Among the countries that follow are Canada and the United Kingdom, reflecting the prominence of English-language production.
+          <br><br>Among the countries that follow are Canada and the United Kingdom, reflecting the prominence of English-language production.
         </p>
       </div>
 
@@ -455,14 +459,46 @@
       <p>As with any interpretive method, the results are not perfect or definitive, but they offer a structured overview of how horror mirrors core human fears.</p>
     </div>
   </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
 
-  <script src="posters.js"></script>
-  <script src="./app.js"></script>
-  <script src="./text.js"></script>
-  <script src="./map.js"></script>
+<!-- floating return-to-top button (becomes visible after threshold) -->
+<button class="sticky-up-arrow" id="upArrow" aria-label="Scroll to top">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+  
+<footer class="footer">
+  <div class="footer-inner">
+
+    <h2 class="footer-title">The End</h2>
+
+    <div class="footer-rule"></div>
+
+    <div class="footer-credits">
+
+      <div>
+        <div class="footer-label">Data Analysis, Design, and Development</div>
+        <div class="footer-name">Lara Yeyati Preiss</div>
+      </div>
+
+      <div>
+        <div class="footer-label">Data</div>
+        <div class="footer-name">Netflix Engagement Report, OMDb API, TMDB API</div>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<script src="./app.js"></script>
+<script src="./text.js"></script>
+<script src="./map.js"></script>
   
 </body>
 </html>

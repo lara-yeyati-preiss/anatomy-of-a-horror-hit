@@ -1,5 +1,4 @@
 async function main() {
-  // Core SVG layers
   const svg     = d3.select("#viz");
   const gRoot   = svg.append("g").attr("class", "chart-root");
   const gChart  = gRoot.append("g").attr("class", "chart-layer");
@@ -17,12 +16,30 @@ async function main() {
   const width  = 1000;
   const height = 720;
   const margin = { top: 60, right: 220, bottom: 120, left: 80 };
+  const fineNoteIcon = d3.select(".fine-note");
+
+  fineNoteIcon
+    .on("mouseover", function(event) {
+      // Get content from the data-attribute
+      const content = d3.select(this).attr("data-tooltip-content");
+      if (!content) return;
+
+      tooltip
+        .style("opacity", 1)
+        .html(content);
+    })
+    .on("mousemove", event => {
+      tooltip
+        .style("left", event.clientX + 15 + "px")
+        .style("top", event.clientY + 15 + "px");
+    })
+    .on("mouseout", () => {
+      tooltip.style("opacity", 0);
+    });
 
   // ===============================
   // Poster wall helpers
   // ===============================
-
-  const POSTER_URLS = window.POSTER_URLS || [];
 
   function setTitleForPosters() {
     titleEl.text("What Are We Afraid of?");
@@ -65,7 +82,6 @@ async function main() {
       .style("height", `${svgBox.height + extraHeight}px`);
   }
 
-  // Fit as many 2:3 tiles as possible in the SVG area
   function layoutPosterGrid(rows) {
     positionPosterWallToSVG();
 
@@ -160,7 +176,7 @@ async function main() {
     setTitleForPosters();
     positionPosterWallToSVG();
 
-    const data = await ensureFearAndPosters();
+    const data = await ensurePosterRows();
     if (!data.length) return;
 
     renderPosterWall(data);
@@ -171,7 +187,8 @@ async function main() {
     }
     node.style.zIndex = "10";
     node.style.position = "absolute";
-
+  d3.select(".graphic").classed("poster-mode", true);
+  hideFineNote();
     posterWall
       .style("display", "block")
       .attr("aria-hidden", "false")
@@ -286,8 +303,8 @@ async function main() {
   // ===============================
 
   let mode = "none";
-  let fearRows = null;
-  let posterRows = null;
+  let fearRows = null;     // for bars
+  let posterRows = null;   // for poster wall
   let quadrantsAdded = false;
   let isHorrorFocused = false;
 
@@ -754,26 +771,30 @@ async function main() {
   }
 
   // ===============================
-  // Horror CSV / poster subset
+  // Horror CSV / poster + fear data
   // ===============================
 
-  async function ensureFearAndPosters() {
+  async function ensureFearRows() {
     if (!fearRows) {
       fearRows = await d3.csv("./horror_categorized_clean_manualfix.csv");
     }
-
-    if (!posterRows) {
-      posterRows = fearRows
-        .filter(d => d.OMDb_Poster && d.OMDb_Poster !== "N/A")
-        .map(d => ({
-          poster:  d.OMDb_Poster,
-          title:   d.Title,
-          country: d.OMDb_Country || "Unknown"
-        }));
-    }
-
-    return posterRows;
+    return fearRows;
   }
+
+async function ensurePosterRows() {
+  if (posterRows) return posterRows;
+
+  const raw = await d3.csv("./poster_wall_hero.csv");
+
+  posterRows = raw.map(d => ({
+    poster:  d.poster,              
+    title:   d.title || "",
+    country: d.country || "Unknown"
+  }));
+
+  return posterRows;
+}
+
 
   // ===============================
   // Bars (11 categories)
@@ -781,7 +802,7 @@ async function main() {
 
   async function drawFearBars() {
     hideFineNote();
-    await ensureFearAndPosters();
+    await ensureFearRows();
     mode = "bars";
     tooltip.style("opacity", 0);
 
@@ -912,7 +933,7 @@ async function main() {
 
   async function drawFearBarsGrouped() {
     hideFineNote();
-    if (!fearRows) fearRows = await d3.csv("./horror_categorized_clean.csv");
+    await ensureFearRows();
 
     mode = "bars";
     tooltip.style("opacity", 0);
@@ -1010,7 +1031,6 @@ async function main() {
 function applyStepFX(stepEl) {
   const scene = stepEl?.getAttribute("data-scene");
   
-  // special behavior for the 4 map cards
   if (scene === "map" && window.horrorMapAPI) {
     const api = window.horrorMapAPI;
 
@@ -1024,7 +1044,7 @@ function applyStepFX(stepEl) {
 
     if (idx === 0) {
       // "But horror isn’t the same everywhere..."
-      api.zoomToWorld();
+      api.zoomToWorldInstant();
       api.setFilterVisible(false);
       api.setFearFilter(null); // all fears
     } else if (idx === 1) {
@@ -1045,7 +1065,6 @@ function applyStepFX(stepEl) {
     }
   }
 }
-
 
   // ===============================
   // Methodology button visibility
@@ -1359,6 +1378,12 @@ function applyStepFX(stepEl) {
       
       go(active.getAttribute("data-scene") || "noop");
     }
+    const footer = document.querySelector('.footer');
+    if (active === steps[steps.length - 1]) {
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
   }
 
   window.addEventListener("scroll", setActiveByCenter, { passive: true });
@@ -1369,7 +1394,7 @@ function applyStepFX(stepEl) {
   // Hero down-arrow
   // ===============================
 
-  document.getElementById("to-graph")?.addEventListener("click", () => {
+  document.getElementById("scrollToChart")?.addEventListener("click", () => {
     const el = document.getElementById("graph");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   });
@@ -1391,6 +1416,41 @@ function applyStepFX(stepEl) {
       modal.classList.remove("is-open");
     }
   });
+
+  function setupBackToTopArrow() {
+  const btn     = document.getElementById("upArrow");
+  const hero    = document.querySelector(".hero-intro");
+  const footer  = document.querySelector(".footer");
+
+  if (!btn || !hero) return;
+
+  btn.addEventListener("click", () => {
+    hero.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+function updateArrowVisibility() {
+  const viewportH = window.innerHeight;
+  const scrollY   = window.scrollY || window.pageYOffset;
+  const heroRect   = hero.getBoundingClientRect();
+  const heroBottom = heroRect.bottom + scrollY;
+  const pastHero = scrollY >= heroBottom - viewportH * 0.2;
+
+  let nearFooter = false;
+  if (footer && window.getComputedStyle(footer).display !== "none") {
+    const footerRect = footer.getBoundingClientRect();
+    nearFooter = footerRect.top < viewportH * 0.4;
+  }
+
+  const shouldShow = pastHero && !nearFooter;
+  btn.classList.toggle("visible", shouldShow);
 }
+
+  window.addEventListener("scroll",  updateArrowVisibility, { passive: true });
+  window.addEventListener("resize", updateArrowVisibility);
+  updateArrowVisibility(); // initial state
+}
+  setupBackToTopArrow();
+}
+
 
 main();

@@ -67,8 +67,8 @@ Promise.all([
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/light-v11",
-    center: [0, 30],
-    zoom: 0.7,
+    center: [0, 35],
+    zoom: 0.6,
     minZoom: 0.7,
     projection: "mercator",
     renderWorldCopies: false
@@ -418,14 +418,14 @@ const palette = [
 
   function zoomToWorldInstant() {
     map.jumpTo({
-      center: [0, 90],
-      zoom: 0.7
+      center: [0, 35],
+      zoom: 0.6
     });
   }
 
   function zoomToWorld() {
       map.easeTo({
-        center: [0, 90],
+        center: [0, 35],
         zoom: 0.6,
         duration: 800
       });
