@@ -5,6 +5,7 @@
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWV5YWw5NDciLCJhIjoiY21oeHFvNm1kMDRqbjJxcHQ1d2FwYjR6aSJ9.YuBSqR795plFdjL6zIBVLg";
 
+
 // ------------------------------------------------------
 // 1) LOAD DATA
 // ------------------------------------------------------
@@ -64,12 +65,19 @@ Promise.all([
   // ------------------------------------------------------
   // 2) MAPBOX + D3 OVERLAY
   // ------------------------------------------------------
+  const isMobile = window.innerWidth <= 900;
+
+  // desktop vs mobile camera
+  const initialCenter = isMobile ? [0, 20] : [0, 35];   // move down a bit on mobile
+  const initialZoom   = isMobile ? 0.10    : 0.6;      // much more zoomed out on mobile
+  const initialMinZoom = isMobile ? 0.25   : 0.7;
+
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/light-v11",
-    center: [0, 35],
-    zoom: 0.6,
-    minZoom: 0.7,
+    center: initialCenter,
+    zoom:   initialZoom,
+    minZoom: initialMinZoom,
     projection: "mercator",
     renderWorldCopies: false
   });
@@ -106,6 +114,7 @@ Promise.all([
       feature.properties.ADMIN || feature.properties.name || ""
     );
   }
+
 
   // ------------------------------------------------------
   // 3) COLOR SCALE + MODE (DISCRETE PALETTE)

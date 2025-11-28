@@ -527,10 +527,6 @@ html {
   background: transparent;
 }
 
-.keywords-section.with-step {
-  margin-bottom: 120vh;
-}
-
 .keywords-section-overall {
   margin: 50px 0 24px 0;
   padding: 0;
@@ -949,3 +945,208 @@ html {
 .sticky-up-arrow.visible{ opacity: .7; pointer-events: auto; }
 .sticky-up-arrow:hover{ opacity: 1; transform: translateY(-2px); }
 
+
+
+/* ============================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  body {
+    padding-inline: 0;
+  }
+  .hero-intro-inner {
+    padding-inline: 1.5rem;
+    margin: 0 auto;
+    max-width: 480px;
+  }
+  .sticky-up-arrow {
+    display: none !important;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    align-items: stretch;
+  }
+  .viz-wrap {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #EFEDE9;
+    border-radius: 0;
+    box-shadow: none;
+  }
+figure.graphic,
+.graphic {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  padding: 24px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+  .graphic .sticky-inner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+  #chart-title {
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0 0 0.35rem;
+    text-align: left;
+  }
+  .subtitle {
+    font-size: 14px;
+    margin: 0 0 0.45rem;
+  }
+  .subtitle-little {
+    font-size: 12px;
+    margin: 0 0 0.75rem;
+  }
+  #viz {
+    width: 100%;
+    height: 55vh;
+    min-height: 260px;
+    display: block;
+  }
+  .methodology-link,
+  .methodology-btn,
+  .fine-note {
+    top: 10px;
+    transform: scale(0.8);
+  }
+  .fine-note {
+    right: 10px;
+  }
+  .graphic.map-mode {
+    height: 100vh;
+  }
+  .map-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 8px);
+    overflow: hidden;
+  }
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+  .map-controls {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    max-width: calc(100% - 32px);
+    padding: 8px 10px !important;
+    font-size: 10px !important;
+  }
+  .map-controls label {
+    font-size: 10px;
+  }
+  .map-controls select {
+    width: 100% !important;
+    font-size: 10px !important;
+    padding: 4px 6px !important;
+  }
+  .steps {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-top: calc(100vh - 10px);
+  }
+  .step {
+    margin: 60vh 5%;
+    max-width: 90%;
+    background: rgba(250, 248, 244, 0.96);
+    backdrop-filter: blur(2px);
+    padding: 1.6rem 1.4rem;
+    text-align: left;
+  }
+  .step:has(+ .keywords-section.with-step),
+  .step:has(+ .horror-stats-section) {
+    margin-bottom: 1.5rem;   
+  }
+  .keywords-section.with-step,
+  .horror-stats-section {
+    width: 90%;
+    margin: 0.75rem auto 120vh;   
+    padding-inline: 0;
+    text-align: left;
+  }
+  .keywords-section.with-step p,
+  .horror-stats-section p {
+    font-size: 12px;
+  }
+  .step .movie-poster-item,
+  .posters-grid,
+  .posters-subtitle,
+  .posters-title {
+    display: none !important;
+  }
+  .steps::after {
+    content: "";
+    display: block;
+    height: 0vh;
+  }
+  .footer-inner {
+    min-height: 50vh;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-inline: 5%;
+    align-items: flex-start;
+  }
+  .footer-title {
+    text-align: left;
+  }
+  .footer-credits {
+    min-width: unset;
+    width: 100%;
+    text-align: left;
+  }
+  .footer-rule {
+    display: none;
+  }
+  #poster-wall {
+    align-items: flex-start;
+  }
+  .poster-wall-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 4px !important; 
+    grid-auto-rows: 1fr !important;
+    align-items: start !important;
+  }
+  .poster-wall-grid img.poster {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+  }
+  .steps::after {
+    height: 20vh; 
+  }
+  .footer {
+    position: relative;
+    z-index: 30;
+  }
+}

@@ -5,6 +5,11 @@ async function main() {
   const gAxis   = gRoot.append("g").attr("class", "axes-layer");
   const gLegend = gRoot.append("g").attr("class", "legend-layer");
 
+  const isMobile = window.matchMedia("(max-width: 900px)").matches;
+  if (isMobile) {
+    gRoot.attr("transform", "translate(0, -340)");
+  }
+
   const titleEl    = d3.select("#chart-title");
   const subtitleEl = d3.select("#chart-subtitle");
   const tooltip    = d3.select(".tooltip");
@@ -20,7 +25,6 @@ async function main() {
 
   fineNoteIcon
     .on("mouseover", function(event) {
-      // Get content from the data-attribute
       const content = d3.select(this).attr("data-tooltip-content");
       if (!content) return;
 
@@ -82,37 +86,50 @@ async function main() {
       .style("height", `${svgBox.height + extraHeight}px`);
   }
 
-  function layoutPosterGrid(rows) {
-    positionPosterWallToSVG();
+function layoutPosterGrid(rows) {
+  positionPosterWallToSVG();
 
-    const gap   = 6;
-    const wrapW = posterWall.node().clientWidth  || width;
-    const wrapH = posterWall.node().clientHeight || height;
-    const ar    = 2 / 3; // w/h
-
-    let best = null;
-    for (let cols = 4; cols <= 12; cols++) {
-      const tileW = (wrapW - (cols - 1) * gap) / cols;
-      const tileH = tileW / ar;
-      const rowsCount  = Math.floor((wrapH + gap) / (tileH + gap));
-      if (rowsCount < 1) continue;
-
-      const count = cols * rowsCount;
-      const usedH = rowsCount * (tileH + gap) - gap;
-      const leftover = Math.abs(wrapH - usedH);
-
-      if (!best || leftover < best.leftover) {
-        best = { cols, rows: rowsCount, tileW, tileH, count, leftover };
-      }
-    }
-    if (!best) return [];
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    const mobileCols = 5;
+    const mobileRows = 5; 
+    const mobileGap  = 4;
+    const maxCount   = mobileCols * mobileRows;
 
     posterWallGrid
-      .style("grid-template-columns", `repeat(${best.cols}, 1fr)`)
-      .style("gap", `${gap}px`);
-
-    return rows.slice(0, best.count);
+      .style("grid-template-columns", `repeat(${mobileCols}, 1fr)`)
+      .style("gap", `${mobileGap}px`);
+    return rows.slice(0, maxCount);
   }
+
+  const gap   = 6;
+  const wrapW = posterWall.node().clientWidth  || width;
+  const wrapH = posterWall.node().clientHeight || height;
+  const ar    = 2 / 3;
+
+  let best = null;
+  for (let cols = 4; cols <= 12; cols++) {
+    const tileW = (wrapW - (cols - 1) * gap) / cols;
+    const tileH = tileW / ar;
+    const rowsCount  = Math.floor((wrapH + gap) / (tileH + gap));
+    if (rowsCount < 1) continue;
+
+    const count    = cols * rowsCount;
+    const usedH    = rowsCount * (tileH + gap) - gap;
+    const leftover = Math.abs(wrapH - usedH);
+
+    if (!best || leftover < best.leftover) {
+      best = { cols, rows: rowsCount, tileW, tileH, count, leftover };
+    }
+  }
+  if (!best) return [];
+
+  posterWallGrid
+    .style("grid-template-columns", `repeat(${best.cols}, 1fr)`)
+    .style("gap", `${gap}px`);
+
+  return rows.slice(0, best.count);
+}
+
 
   function renderPosterWall(data) {
     const use = layoutPosterGrid(data);
