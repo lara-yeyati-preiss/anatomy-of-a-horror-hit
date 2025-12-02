@@ -1,4 +1,4 @@
-Live demo: [https://lara-yeyati-preiss.github.io/anatomy_of_a_horror_hit/](https://lara-yeyati-preiss.github.io/anatomy_of_a_horror_hit)
+Live demo: [https://lara-yeyati-preiss.github.io/anatomy-of-a-horror-hit/](https://lara-yeyati-preiss.github.io/anatomy-of-a-horror-hit)
 
 # Anatomy of a Horror Hit  
 **by Lara Yeyati Preiss**  
@@ -31,10 +31,16 @@ Finally, it traces horror’s **recurring fear patterns**, inviting users to exp
   
 
 
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/10e7fa8f-675e-4a86-9a20-35eb88d4c437" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/ee8da4f7-449e-4504-a43c-be1380a47599" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/c7df3ee5-5c27-45b0-a64a-831472fe922e" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/9b257abd-8d59-446a-921c-b394a23bfa6b" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/f6035f31-941e-4687-a4c8-c5216d843909" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/1aa0e6b3-f8db-4041-89d1-f0706c77496b" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/bc6c8e48-eff9-4279-8e81-0fa2ae7bd5a7" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/ffdee21a-8ac9-428b-a320-825df5a1d849" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/c628c019-ccce-4b46-9727-6b5418f7e12f" />
+<img width="1689" height="877" alt="image" src="https://github.com/user-attachments/assets/80aea3ec-f039-4526-8338-31d955e3a36d" />
 
-<img width="1721" height="868" alt="image" src="https://github.com/user-attachments/assets/df116740-42e8-4a0e-9d56-491eab0cff20" />
-<img width="1721" height="868" alt="image" src="https://github.com/user-attachments/assets/4199630e-f497-4a96-9a70-b5d7488bf97d" />
-<img width="1721" height="868" alt="image" src="https://github.com/user-attachments/assets/f7d09960-8a90-4623-b28a-c8dce812ef39" />
-<img width="1721" height="868" alt="image" src="https://github.com/user-attachments/assets/36742e4a-3add-4284-b638-4b3ab9ee47d7" />
-<img width="1721" height="868" alt="image" src="https://github.com/user-attachments/assets/0d85d69f-3853-4255-ab2f-2c870c264d0c" />
+
 
