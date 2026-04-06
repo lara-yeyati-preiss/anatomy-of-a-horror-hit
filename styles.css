@@ -78,7 +78,7 @@ html {
 .hero-title {
   font-family: "Cormorant Garant", Georgia, serif;
   font-weight: 300;
-  font-size: clamp(2.8rem, 4.5vw, 5rem);
+  font-size: 50px;
   line-height: 1.05;
   letter-spacing: -0.01em;
   color: #ffffff;
